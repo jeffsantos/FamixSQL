@@ -34,6 +34,26 @@ SQLRSTableGroupBuilder >> build [
 	super build
 ]
 
+{ #category : #'accessing - defaults' }
+SQLRSTableGroupBuilder >> canvasController: aCanvas [
+
+	^ RSCanvasController new
+		  noLegend;
+		  in: [ :i | 
+			  aCanvas newAnimation
+				  duration: 500 milliSeconds;
+				  onStepDo: [ aCanvas signalUpdate ];
+				  when: RSAnimationEndEvent
+				  do: [ i zoomToFitInteraction noZoomToFitOnExtendChanged ]
+				  for: self.
+			  (i interactions at: RSDraggableCanvasInteraction) left.
+			  i configuration
+				  maxScale: 3;
+				  minScale: 0.5
+			  "useBasicZoom;" ];
+		  yourself
+]
+
 { #category : #accessing }
 SQLRSTableGroupBuilder >> collapseAll [
 	shoudBeCollapsed := true
