@@ -32,7 +32,7 @@ BaselineOfFamixSQL >> defineDependencies: spec [
 	spec
 		baseline: 'ODBC'
 		with: [
-		spec repository: 'github://pharo-rdbms/Pharo-ODBC:master/src' ].
+		spec repository: 'github://jeffsantos/Pharo-ODBC:master/src' ].
 	self famix: spec
 ]
 
